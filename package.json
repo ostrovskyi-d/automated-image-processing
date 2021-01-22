@@ -1,0 +1,34 @@
+{
+  "name": "graphics-magick",
+  "version": "1.0.0",
+  "description": "Project for image processing automation - cropping, resizing, optimizing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ostrovskyi-d/automated-image-processing.git"
+  },
+  "keywords": [
+    "images",
+    "automation",
+    "processing",
+    "crop",
+    "resize",
+    "nodejs",
+    "GraphicsMagick",
+    "ImageMagick",
+    "convertion",
+    "optimization"
+  ],
+  "author": "ostrovskyi.de",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ostrovskyi-d/automated-image-processing/issues"
+  },
+  "homepage": "https://github.com/ostrovskyi-d/automated-image-processing#readme",
+  "dependencies": {
+    "gm": "^1.23.1"
+  }
+}
