@@ -5,6 +5,8 @@
 const fs = require('fs');
 const gm = require('gm');
 
+const {performance, PerformanceObserver} = require('perf_hooks');
+
 // Only for node version >= 10
 /*
  const imagemin = require('imagemin');
@@ -21,16 +23,22 @@ const paths = {
 function processImage(paths) {
 
   fs.readdir(paths.imagesPath, function (err, items) {
+    if (err) {
+      console.log(err)
+      return;
+    } else {
 
-    for (let i = 0; i < items.length; i++) {
+      for (let i = 0; i < items.length; i++) {
 
-      if (items[i].indexOf('_UI_') > -1) {
-        processDesktopImage(items[i], paths);
+        if (items[i].indexOf('_UI_') > -1) {
+          processDesktopImage(items[i], paths);
 
-      } else if (items[i].indexOf('_Print_') > -1) {
-        processPrintImage(items[i], paths);
+        } else if (items[i].indexOf('_Print_') > -1) {
+          processPrintImage(items[i], paths);
 
+        }
       }
+
     }
   })
 }
@@ -85,6 +93,23 @@ function processPrintImage(image, paths) {
       })
 }
 
-processImage(paths)
+
+function start() {
+  processImage(paths)
+}
+
+start();
 
 
+// Calculate execution time
+
+const wrapped = performance.timerify(start);
+
+const obs = new PerformanceObserver((list) => {
+  console.log(list.getEntries()[0].duration);
+  obs.disconnect();
+});
+obs.observe({entryTypes: ['function']});
+
+// A performance timeline entry will be created
+wrapped();
