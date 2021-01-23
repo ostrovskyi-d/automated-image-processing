@@ -5,8 +5,6 @@
 const fs = require('fs');
 const gm = require('gm');
 
-const {performance, PerformanceObserver} = require('perf_hooks');
-
 // Only for node version >= 10
 /*
  const imagemin = require('imagemin');
@@ -99,17 +97,3 @@ function start() {
 }
 
 start();
-
-
-// Calculate execution time
-
-const wrapped = performance.timerify(start);
-
-const obs = new PerformanceObserver((list) => {
-  console.log(list.getEntries()[0].duration);
-  obs.disconnect();
-});
-obs.observe({entryTypes: ['function']});
-
-// A performance timeline entry will be created
-wrapped();
