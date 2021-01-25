@@ -3,8 +3,17 @@ const imagemin = require('imagemin');
 const imageminPngquant = require('imagemin-pngquant');
 
 (async () => {
-  await imagemin(['{desktopEdited,printEdited}/*.{jpg,png}'], {
-    destination: 'minified/',
+  await imagemin(['desktopEdited/*.{jpg,png}'], {
+    destination: 'desktopTiny/',
+    plugins: [
+      imageminPngquant({
+        quality: [0.6, 0.8]
+      })
+    ]
+  });
+
+  await imagemin(['printEdited/*.{jpg,png}'], {
+    destination: 'printTiny/',
     plugins: [
       imageminPngquant({
         quality: [0.6, 0.8]
