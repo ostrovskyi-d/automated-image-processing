@@ -1,6 +1,3 @@
-/* todo: для сортировки большого кол-ва файлов по папкам попробовать использовать алгоритм:
-   делать акцент на сложность алгоритма и стараться не использовать вложенные циклы - они возводят сложность в степень
-*/
 
 const fs = require('fs');
 const gm = require('gm');
@@ -13,10 +10,10 @@ function processImage(paths) {
 
       if (err) {
         console.error(err);
-        reject(() => '321');
       } else {
         for (let i = 0; i <= items.length; i++) {
           if (i > lastItem) resolve(true)
+
           else if (items[i].indexOf('_UI_') > -1) {
             processDesktopImage(items[i], paths);
           } else if (items[i].indexOf('_Print_') > -1) {
@@ -26,7 +23,6 @@ function processImage(paths) {
 
       }
     })
-    console.log(1)
   })
 }
 
